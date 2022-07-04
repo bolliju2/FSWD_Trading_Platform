@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Role {
+public class Portfolio {
     @Id
     private String roleName;
 

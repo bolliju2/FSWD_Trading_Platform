@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Project {
+public class Currency {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +21,7 @@ public class Project {
     private String owner;
 
     @OneToMany
-    private List<ToDo> toDos = new ArrayList<>();
+    private List<Transactions> toDos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -47,11 +47,11 @@ public class Project {
         this.owner = owner;
     }
 
-    public List<ToDo> getToDos() {
+    public List<Transactions> getToDos() {
         return toDos;
     }
 
-    public void setToDos(List<ToDo> toDos) {
+    public void setToDos(List<Transactions> toDos) {
         this.toDos = toDos;
     }
 

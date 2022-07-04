@@ -5,24 +5,24 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Project;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ProjectRepository;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDo;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Currency;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.CurrencyRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Transactions;
 
 @Component
 public class ProjectController {
 
 
     @Autowired
-    private ProjectRepository projectRepository;
+    private CurrencyRepository projectRepository;
 
 
 
-    public List<Project> listAllProjects(String loginName) {
+    public List<Currency> listAllProjects(String loginName) {
         return projectRepository.findByOwner(loginName);
     }
 
-    public void persistProject(Project newProject, String owner) {
+    public void persistProject(Currency newProject, String owner) {
         newProject.setId(null);
         // We only create empty projects
         newProject.getToDos().clear();
@@ -30,8 +30,8 @@ public class ProjectController {
         projectRepository.save(newProject);
     }
 
-    public void addToDo(Long projectId, ToDo toDo, String owner) {
-        Project project = projectRepository.getOne(projectId);
+    public void addToDo(Long projectId, Transactions toDo, String owner) {
+        Currency project = projectRepository.getOne(projectId);
         if(project == null || !project.getOwner().equals(owner)) {
             return;
         }  

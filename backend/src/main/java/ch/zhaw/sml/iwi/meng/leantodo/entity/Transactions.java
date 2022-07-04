@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * ToDo
  */
 @Entity
-public class ToDo {
+public class Transactions {
     
     @Id
     @GeneratedValue
