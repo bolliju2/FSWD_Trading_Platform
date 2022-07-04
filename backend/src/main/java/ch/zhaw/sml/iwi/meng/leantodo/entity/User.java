@@ -21,7 +21,7 @@ public class User {
     private String passwordHash;
 
     @ManyToMany
-    private List<Role> roles = new ArrayList<>();
+    private List<Portfolio> roles = new ArrayList<>();
 
     /**
      * @return the loginName
@@ -54,14 +54,14 @@ public class User {
     /**
      * @return the roles
      */
-    public List<Role> getRoles() {
+    public List<Portfolio> getRoles() {
         return roles;
     }
 
     /**
      * @param roles the roles to set
      */
-    public void setRoles(List<Role> roles) {
+    public void setRoles(List<Portfolio> roles) {
         this.roles = roles;
     }
 

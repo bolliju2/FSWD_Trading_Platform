@@ -11,10 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Role;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.RoleRepository;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDo;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.ToDoRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Portfolio;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.PortfolioRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Transactions;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.TransactionsRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.User;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.UserRepository;
 
@@ -32,11 +32,11 @@ public class LeanToDo implements CommandLineRunner {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private PortfolioRepository roleRepository;
 
     
     @Autowired
-    private ToDoRepository toDoRepository;
+    private TransactionsRepository toDoRepository;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -59,18 +59,18 @@ public class LeanToDo implements CommandLineRunner {
         User u = new User();
         u.setLoginName("user");
         u.setPasswordHash(new BCryptPasswordEncoder().encode("user"));
-        Role r = new Role();
+        Portfolio r = new Portfolio();
         r.setRoleName("ROLE_USER");
         roleRepository.save(r);
         u.getRoles().add(r);
         userRepository.save(u);
 
-        ToDo toDo = new ToDo();
+        Transactions toDo = new Transactions();
         toDo.setTitle("Finish This app");
         toDo.setOwner("user");
         toDoRepository.save(toDo);
 
-        toDo = new ToDo();
+        toDo = new Transactions();
         toDo.setTitle("Reply to student");
         toDo.setOwner("user");
         toDoRepository.save(toDo);
