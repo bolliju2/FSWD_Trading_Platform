@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.zhaw.sml.iwi.meng.leantodo.controller.ToDoController;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Transactions;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Transaction;
 
 @RestController
 public class ToDoEndpoint {
@@ -21,19 +21,19 @@ public class ToDoEndpoint {
 
     @RequestMapping(path = "/api/todo", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public List<Transactions> toDo(Principal principal) {
+    public List<Transaction> toDo(Principal principal) {
         return  toDoController.listAllToDos(principal.getName());        
     }
 
     @RequestMapping(path = "/api/todo", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void addToDo(@RequestBody Transactions newToDo, Principal principal) {
+    public void addToDo(@RequestBody Transaction newToDo, Principal principal) {
         toDoController.persistToDo(newToDo, principal.getName());
     }
     
     @RequestMapping(path = "/api/todo", method = RequestMethod.PUT)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void updateToDo(@RequestBody Transactions toDo, Principal principal) {
+    public void updateToDo(@RequestBody Transaction toDo, Principal principal) {
         toDoController.updateToDo(toDo, principal.getName());
     }
 }

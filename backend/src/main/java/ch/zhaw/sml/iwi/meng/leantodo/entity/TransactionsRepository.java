@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TransactionsRepository extends JpaRepository<Transactions,Long> {
-    public List<Transactions> findByOwner(String owner);
+public interface TransactionsRepository extends JpaRepository<Transaction,Long> {
+    public List<Transaction> findByOwner(String owner);
    
     @Query("SELECT t FROM ToDo as t WHERE t.owner = ?1 AND t.archived = false")
-    public List<Transactions> findAllButArchivedByOwner(String owner);
+    public List<Transaction> findAllButArchivedByOwner(String owner);
     
 }

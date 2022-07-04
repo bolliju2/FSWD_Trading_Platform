@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Currency;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.CurrencyRepository;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Transactions;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Transaction;
 
 @Component
 public class ProjectController {
@@ -19,19 +19,19 @@ public class ProjectController {
 
 
     public List<Currency> listAllProjects(String loginName) {
-        return projectRepository.findByOwner(loginName);
+        return null;//projectRepository.findByOwner(loginName);
     }
 
     public void persistProject(Currency newProject, String owner) {
         newProject.setId(null);
         // We only create empty projects
-        newProject.getToDos().clear();
-        newProject.setOwner(owner);
+      //  newProject.getToDos().clear();
+      //  newProject.setOwner(owner);
         projectRepository.save(newProject);
     }
 
-    public void addToDo(Long projectId, Transactions toDo, String owner) {
-        Currency project = projectRepository.getOne(projectId);
+    public void addToDo(Long projectId, Transaction toDo, String owner) {
+     /*   Currency project = projectRepository.getOne(projectId);
         if(project == null || !project.getOwner().equals(owner)) {
             return;
         }  
@@ -40,6 +40,7 @@ public class ProjectController {
         toDo.setOwner(owner);
         project.getToDos().add(toDo);
         projectRepository.save(project);
+        */
     }
     
 }

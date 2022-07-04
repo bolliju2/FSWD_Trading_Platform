@@ -1,5 +1,8 @@
 package ch.zhaw.sml.iwi.meng.leantodo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,9 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Portfolio;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.PortfolioRepository;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Transactions;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Role;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.RoleRepository;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Transaction;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.TransactionsRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.User;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.UserRepository;
@@ -32,7 +35,7 @@ public class LeanToDo implements CommandLineRunner {
     private UserRepository userRepository;
 
     @Autowired
-    private PortfolioRepository roleRepository;
+    private RoleRepository roleRepository;
 
     
     @Autowired
@@ -56,23 +59,19 @@ public class LeanToDo implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User u = new User();
+
+     
+
+      User u = new User();
         u.setLoginName("user");
         u.setPasswordHash(new BCryptPasswordEncoder().encode("user"));
-        Portfolio r = new Portfolio();
+        Role r = new Role();
         r.setRoleName("ROLE_USER");
         roleRepository.save(r);
         u.getRoles().add(r);
         userRepository.save(u);
 
-        Transactions toDo = new Transactions();
-        toDo.setTitle("Finish This app");
-        toDo.setOwner("user");
-        toDoRepository.save(toDo);
-
-        toDo = new Transactions();
-        toDo.setTitle("Reply to student");
-        toDo.setOwner("user");
-        toDoRepository.save(toDo);
+      
+        
     }
 }

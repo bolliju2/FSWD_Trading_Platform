@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.zhaw.sml.iwi.meng.leantodo.controller.ProjectController;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Currency;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Transactions;
+import ch.zhaw.sml.iwi.meng.leantodo.entity.Transaction;
 
 @RestController
 public class ProjectEndpoint {
@@ -30,7 +30,7 @@ public class ProjectEndpoint {
     
     @RequestMapping(path = "/api/project/{id}", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    public void addToDo(@RequestParam(name="id") Long projectId, @RequestBody Transactions toDo,  Principal principal) {
+    public void addToDo(@RequestParam(name="id") Long projectId, @RequestBody Transaction toDo,  Principal principal) {
         projectController.addToDo(projectId, toDo, principal.getName());
     }
 }
