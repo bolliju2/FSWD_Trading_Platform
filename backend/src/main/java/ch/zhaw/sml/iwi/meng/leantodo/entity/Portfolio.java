@@ -17,6 +17,9 @@ public class Portfolio {
     private Long id;
 
     private Long cash;
+    
+    private String owner;
+
 
     @OneToMany
     private List<Transaction> transactions = new ArrayList<>();
@@ -24,6 +27,10 @@ public class Portfolio {
     
 
 
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public List<Transaction> getTransactions() {
         return transactions;
@@ -43,6 +50,14 @@ public class Portfolio {
 
     public void setCash(Long cash) {
         this.cash = cash;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     
