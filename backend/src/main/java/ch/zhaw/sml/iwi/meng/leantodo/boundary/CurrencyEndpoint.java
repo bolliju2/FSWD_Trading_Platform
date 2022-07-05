@@ -3,7 +3,6 @@ package ch.zhaw.sml.iwi.meng.leantodo.boundary;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.zhaw.sml.iwi.meng.leantodo.currencyData.CurrencyData;
 import ch.zhaw.sml.iwi.meng.leantodo.currencyData.TimeSeries;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.Currency;
 
 @RestController
 public class CurrencyEndpoint {

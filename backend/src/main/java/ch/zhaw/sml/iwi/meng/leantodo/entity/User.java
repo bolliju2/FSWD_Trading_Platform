@@ -6,7 +6,11 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +26,10 @@ public class User {
 
     @ManyToMany
     private List<Role> roles = new ArrayList<>();
+
+    @OneToOne
+    @Cascade(CascadeType.ALL)
+    private Portfolio portfolio = new Portfolio();
 
     /**
      * @return the loginName
@@ -64,6 +72,16 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
+
+    
 
 
 }

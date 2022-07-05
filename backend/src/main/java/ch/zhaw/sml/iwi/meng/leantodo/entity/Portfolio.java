@@ -16,17 +16,15 @@ public class Portfolio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long cash;
+    private Double cash;
     
-    private String owner;
-
+    public Portfolio() {
+        this.cash = 1000.0;
+    }
 
     @OneToMany
     private List<Transaction> transactions = new ArrayList<>();
     
-    
-
-
 
     public void setId(Long id) {
         this.id = id;
@@ -44,23 +42,13 @@ public class Portfolio {
         return id;
     }
 
-    public Long getCash() {
+    public Double getCash() {
         return cash;
     }
 
-    public void setCash(Long cash) {
+    public void setCash(Double cash) {
         this.cash = cash;
     }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    
 
 
 

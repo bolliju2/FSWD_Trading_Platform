@@ -19,16 +19,11 @@ public class Transaction {
     @GeneratedValue
     private Long transactionId;
 
-    private Date date = new Date();
+    private Date date;
 
     private double exchangePrice;
     
     private double amountCoins;
-
-    
-    
-
-
     
     public Long getTransactionId() {
         return transactionId;
@@ -63,43 +58,8 @@ public class Transaction {
     }
 
 
-
-
-
-    private boolean archived = false;
-    private boolean done = false;
-
     @JsonIgnore
     private String owner;
-
-
-    /**
-     * @return the archived
-     */
-    public boolean isArchived() {
-        return archived;
-    }
-
-    /**
-     * @param archived the archived to set
-     */
-    public void setArchived(boolean archived) {
-        this.archived = archived;
-    }
-
-    /**
-     * @return the done
-     */
-    public boolean isDone() {
-        return done;
-    }
-
-    /**
-     * @param done the done to set
-     */
-    public void setDone(boolean done) {
-        this.done = done;
-    }
 
     /**
      * @return the owner
