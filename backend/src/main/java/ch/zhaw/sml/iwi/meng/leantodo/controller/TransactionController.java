@@ -29,24 +29,29 @@ public class TransactionController {
         return portfolio.getTransactions();
     }
 
-    public void persistTransaction(Transaction newTransaction, String owner) {
-        newTransaction.setOwner(owner);
-        newTransaction.setDate(new Date());
-        newTransaction.setExchangePrice(20.0); //Verbinden mit eingelesenen Daten
-        newTransaction.setAmountCoins(2); //Dynamisch anpassen
-        newTransaction.setTransactionId(null);
-        transactionsRepository.save(newTransaction);
-    }
-
-    //Hier Cash ändern
-    public void addTransaction(Transaction transaction, String owner) {
-        Portfolio portfolio = userRepository.findById(owner).get().getPortfolio();
+    // public void persistTransaction(Transaction newTransaction, String owner) {
         
-        // Ensure that JPA creates a new entity
-        transaction.setTransactionId(null);
+    // }
+
+    public void addTransaction(Transaction transaction, String owner) {
+        
         transaction.setOwner(owner);
-        portfolio.getTransactions().add(transaction);
-        portfolioRepository.save(portfolio);
+        transaction.setDate(new Date());
+        transaction.setExchangePrice(20.0); //Verbinden mit eingelesenen Daten
+        transaction.setAmountCoins(2); //Dynamisch anpassen
+        transaction.setTransactionId(null);
+        transactionsRepository.save(transaction);
+        
+        
+        
+        
+        // Portfolio portfolio = userRepository.findById(owner).get().getPortfolio();
+        
+        // // Ensure that JPA creates a new entity
+        // transaction.setTransactionId(null);
+        // transaction.setOwner(owner);
+        // portfolio.getTransactions().add(transaction);
+        // portfolioRepository.save(portfolio);
     }
 
 

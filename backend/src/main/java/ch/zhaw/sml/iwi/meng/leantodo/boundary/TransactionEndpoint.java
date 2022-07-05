@@ -31,10 +31,4 @@ public class TransactionEndpoint {
     public void addTransaction( @RequestBody Transaction transaction,  Principal principal) {
         transactionController.addTransaction(transaction, principal.getName());
     }
-    
-    // @RequestMapping(path = "/api/todo", method = RequestMethod.PUT)
-    // @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    // public void updateToDo(@RequestBody ToDo toDo, Principal principal) {
-    //     toDoController.updateToDo(toDo, principal.getName());
-    // }
 }
