@@ -26,6 +26,8 @@ public class TransactionController {
 
     public List<Transaction> listAllTransactions(String loginName) {
         Portfolio portfolio = userRepository.findById(loginName).get().getPortfolio();
+        
+
         return portfolio.getTransactions();
     }
 
@@ -37,8 +39,8 @@ public class TransactionController {
         
         transaction.setOwner(owner);
         transaction.setDate(new Date());
-        transaction.setExchangePrice(20.0); //Verbinden mit eingelesenen Daten
-        transaction.setAmountCoins(2); //Dynamisch anpassen
+        //transaction.setExchangePrice(20.0); //Verbinden mit eingelesenen Daten
+        //transaction.setAmountCoins(2); //Dynamisch anpassen
         transaction.setTransactionId(null);
         transactionsRepository.save(transaction);
         

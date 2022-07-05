@@ -13,6 +13,10 @@ const routes: Array<RouteRecordRaw> = [
     component: Login,
   },
   {
+    path: '/portfolio',
+    component: () => import('@/views/Portfolio.vue')
+  },
+  {
     path: '/tabs/',
     component: Tabs,
     children: [
@@ -21,12 +25,12 @@ const routes: Array<RouteRecordRaw> = [
         redirect: '/tabs/tab1'
       },
       {
-        path: 'todo',
-        component: () => import('@/views/Todo.vue')
+        path: 'portfolio',
+        component: () => import('@/views/Portfolio.vue')
       },
       {
-        path: 'projects',
-        component: () => import('@/views/Projects.vue')
+        path: 'currencies',
+        component: () => import('@/views/Currencies.vue')
       },
       {
         path: 'timerecord',
