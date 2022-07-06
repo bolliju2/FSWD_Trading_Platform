@@ -6,7 +6,6 @@ export function useTransaction() {
 
     const transactions = ref<Transaction[]>([]);
 
-    //const newTransaction = ref<Transaction>({});
 
     const getTransactions = async () => {
         try {

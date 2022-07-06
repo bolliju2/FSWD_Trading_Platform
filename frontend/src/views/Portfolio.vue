@@ -30,7 +30,7 @@ exchangeprice
   </ion-page>
 </template>
 
-<script lang="ts">
+<script>
 import { getPortfolio, postTransaction } from "@/api/portfolio";
 import { Portfolio, Transaction } from "@/model/portfolio";
 import {

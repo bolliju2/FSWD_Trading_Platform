@@ -2,18 +2,34 @@ package ch.zhaw.sml.iwi.meng.leantodo.boundary;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import ch.zhaw.sml.iwi.meng.leantodo.currencyData.CurrencyData;
 import ch.zhaw.sml.iwi.meng.leantodo.currencyData.TimeSeries;
 
 @RestController
 public class CurrencyEndpoint {
+
+    @RequestMapping(path = "/api/currency", method = RequestMethod.GET)
+    public List<String> getCurrency() {
+        List<String> res = new ArrayList<>();
+        res.add("BTC");
+        res.add("ETH");
+        res.add("DOGE");
+        res.add("OG");
+        return res;
+    }
+
+
 
     @RequestMapping(path = "/api/currency/{name}", method = RequestMethod.GET)
     public TimeSeries getCurrency(@PathVariable(name = "name") String name) {
@@ -47,8 +63,11 @@ public class CurrencyEndpoint {
                                     value));
                 }
             }
+            //EVTL. LETZTER WERT VON historicalValue (value)
+            
         } catch (Exception e) {
-            e.printStackTrace();
+           // e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return ts;
     }
