@@ -18,10 +18,10 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
-        redirect: '/tabs/tab1'
+        redirect: '/tabs/transaction'
       },
       {
-        path: 'todo',
+        path: 'transaction',
         component: () => import('@/views/Todo.vue')
       },
       {
