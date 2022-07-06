@@ -34,9 +34,14 @@ public class Portfolio {
         return transactions;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
+    public void setTransactions(Transaction transaction) {
+        transactions.add(transaction);
+        //this.transactions = transactions;
     }
+
+    // public void setTransactions(List<Transaction> transactions) {
+    //     this.transactions = transactions;
+    // }
 
     public Long getId() {
         return id;

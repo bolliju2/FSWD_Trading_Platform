@@ -20,11 +20,18 @@ public class TransactionEndpoint {
     @Autowired
     private TransactionController transactionController;
 
-    @RequestMapping(path = "/api/transaction", method = RequestMethod.GET)
+   /*  @RequestMapping(path = "/api/transaction", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
     public List<Transaction> transaction(Principal principal) {
         return  transactionController.listAllTransactions(principal.getName());        
     }
+*/
+    @RequestMapping(path = "/api/transaction", method = RequestMethod.GET)
+    @PreAuthorize("isAuthenticated() AND hasRole('USER')")
+    public List<Transaction> transaction(Principal user) {
+        return  transactionController.listAllTransactions(user.getName());        
+    }
+
 
     @RequestMapping(path = "/api/transaction", method = RequestMethod.POST)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")

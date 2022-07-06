@@ -3,6 +3,7 @@ package ch.zhaw.sml.iwi.meng.leantodo.currencyData;
 import java.util.Date;
 
 
+//Class for the Currency Data which are imported by CSV
 public class CurrencyData {
     private final Date timestamp;
     private final Double value;
@@ -19,7 +20,6 @@ public class CurrencyData {
     public Double getValue() {
         return value;
     }
-    
     
     @Override
     public String toString() {

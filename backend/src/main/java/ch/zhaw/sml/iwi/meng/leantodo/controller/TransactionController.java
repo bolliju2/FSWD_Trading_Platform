@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Portfolio;
-import ch.zhaw.sml.iwi.meng.leantodo.entity.PortfolioRepository;
+//import ch.zhaw.sml.iwi.meng.leantodo.entity.PortfolioRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.Transaction;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.TransactionsRepository;
 import ch.zhaw.sml.iwi.meng.leantodo.entity.UserRepository;
@@ -21,37 +21,33 @@ public class TransactionController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PortfolioRepository portfolioRepository;
-
+    //Get all Transactions from Portfolio with the logged user
     public List<Transaction> listAllTransactions(String loginName) {
+
         Portfolio portfolio = userRepository.findById(loginName).get().getPortfolio();
         return portfolio.getTransactions();
     }
 
-    // public void persistTransaction(Transaction newTransaction, String owner) {
-        
-    // }
 
+    //HIER MIT VARIABLEN ARBEITEN
     public void addTransaction(Transaction transaction, String owner) {
         
-        transaction.setOwner(owner);
-        transaction.setDate(new Date());
+        transaction.setOwner(owner); //set the owner
+        transaction.setDate(new Date()); //create a new Date (current date)
         transaction.setExchangePrice(20.0); //Verbinden mit eingelesenen Daten
         transaction.setAmountCoins(2); //Dynamisch anpassen
-        transaction.setTransactionId(null);
+        
+        addTransactionToList(transaction, owner);
         transactionsRepository.save(transaction);
-        
-        
-        
-        
-        // Portfolio portfolio = userRepository.findById(owner).get().getPortfolio();
-        
-        // // Ensure that JPA creates a new entity
-        // transaction.setTransactionId(null);
-        // transaction.setOwner(owner);
-        // portfolio.getTransactions().add(transaction);
-        // portfolioRepository.save(portfolio);
+    }
+
+    public void addTransactionToList(Transaction transaction, String owner){
+
+        Portfolio portfolio = userRepository.findById(owner).get().getPortfolio();
+        portfolio.setTransactions(transaction);
+        // List<Transaction> transList = transactionsRepository.findByOwner(owner);
+        // portfolio.setTransactions(transList);
+
     }
 
 

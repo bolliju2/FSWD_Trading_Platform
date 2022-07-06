@@ -12,7 +12,25 @@
         </ion-toolbar>
       </ion-header>
       <ion-list>
-        <ion-item :key="todo" v-for="todo in todos">
+        <ion-item :key="transaction" v-for="transaction in transactions">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              {{ transaction.date }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-item>
+        <ion-item :key="portfolio">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              {{ portfolio.cash }}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-item>
+        <!-- <ion-item :key="todo" v-for="todo in todos">
           <ion-grid>
             <ion-row>
               <ion-col>
@@ -34,18 +52,18 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-        </ion-item>
+        </ion-item> -->
       </ion-list>
-      <ion-item>
+      <!-- <ion-item>
         <ion-input
           type="text"
           placeholder="New Todo Title"
           v-model="newTodo.title"
         ></ion-input>
-      </ion-item>
-      <div padding>
+      </ion-item> -->
+      <!-- <div padding>
         <ion-button @click="addTodo()">Add New ToDo</ion-button>
-      </div>
+      </div> -->
     </ion-content>
   </ion-page>
 </template>
@@ -62,13 +80,38 @@ import {
   IonGrid,
   IonItem,
   IonList,
-  IonButton,
-  IonInput,
+  //IonButton,
+  //IonInput,
 } from "@ionic/vue";
-import { useTodos } from "@/composables/useTodos";
+//import { useTodos } from "@/composables/useTodos";
+import { useTransaction } from "@/composables/useTransaction";
+import { usePortfolio } from "@/composables/usePortfolio";
+
+// export default {
+//   name: "Todo",
+//   components: {
+//     IonHeader,
+//     IonToolbar,
+//     IonTitle,
+//     IonContent,
+//     IonPage,
+//     IonCol,
+//     IonRow,
+//     IonGrid,
+//     IonItem,
+//     IonList,
+//     IonButton,
+//     IonInput,
+//   },
+//   setup() {
+//     const { newTodo, todos, getTodos, addTodo, finishTodo, archiveTodo } = useTodos();
+
+//     return { newTodo, todos, getTodos, addTodo, finishTodo, archiveTodo };
+//   },
+// };
 
 export default {
-  name: "Todo",
+  name: "Transaction",
   components: {
     IonHeader,
     IonToolbar,
@@ -80,13 +123,14 @@ export default {
     IonGrid,
     IonItem,
     IonList,
-    IonButton,
-    IonInput,
+    //IonButton,
+    //IonInput,
   },
   setup() {
-    const { newTodo, todos, getTodos, addTodo, finishTodo, archiveTodo } = useTodos();
+    const { transactions } = useTransaction();
+    const { portfolio } = usePortfolio();
 
-    return { newTodo, todos, getTodos, addTodo, finishTodo, archiveTodo };
-  },
-};
+    return { transactions, portfolio };
+  }
+}
 </script>

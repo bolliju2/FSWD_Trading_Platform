@@ -3,6 +3,7 @@ package ch.zhaw.sml.iwi.meng.leantodo.currencyData;
 import java.util.ArrayList;
 import java.util.List;
 
+//Class for the Time Series for the specific Currency
 public class TimeSeries {
     private final List<CurrencyData> historicalValues = new ArrayList<>();
 

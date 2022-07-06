@@ -19,7 +19,7 @@ public class PortfolioEndpoint {
 
     @RequestMapping(path = "/api/portfolio", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated() AND hasRole('USER')")
-    //Brauchen wir nicht denkt Besfort
+    
     public Portfolio getPortfolios(Principal principal) {
         return portfolioController.getPortfolio(principal.getName());
     }
