@@ -3,14 +3,14 @@
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="todo" href="/tabs/todo">
+        <ion-tab-button tab="todo" href="/tabs/portfolio">
           <ion-icon :icon="flash" />
-          <ion-label>Todo</ion-label>
+          <ion-label>Portfolio</ion-label>
         </ion-tab-button>
           
-        <ion-tab-button tab="projects" href="/tabs/projects">
+        <ion-tab-button tab="projects" href="/tabs/currencies">
           <ion-icon :icon="apps" />
-          <ion-label>Projects</ion-label>
+          <ion-label>Currencies</ion-label>
         </ion-tab-button>
         
         <ion-tab-button tab="timerecord" href="/tabs/timerecord">

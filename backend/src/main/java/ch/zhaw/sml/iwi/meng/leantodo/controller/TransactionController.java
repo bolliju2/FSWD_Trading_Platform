@@ -25,6 +25,8 @@ public class TransactionController {
     public List<Transaction> listAllTransactions(String loginName) {
 
         Portfolio portfolio = userRepository.findById(loginName).get().getPortfolio();
+        
+
         return portfolio.getTransactions();
     }
 
