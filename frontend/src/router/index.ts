@@ -13,31 +13,54 @@ const routes: Array<RouteRecordRaw> = [
     component: Login,
   },
   {
-    path: '/portfolio',
-    component: () => import('@/views/Portfolio.vue')
-  },
-  {
     path: '/tabs/',
     component: Tabs,
     children: [
       {
         path: '',
-        redirect: '/tabs/transaction'
-      },
-      {
-        path: 'portfolio',
-        component: () => import('@/views/Portfolio.vue')
+        redirect: '/tabs/currencies'
       },
       {
         path: 'currencies',
         component: () => import('@/views/Currencies.vue')
       },
       {
-        path: 'timerecord',
-        component: () => import('@/views/Timerecord.vue')
+        path: 'portfolio',
+        component: () => import('@/views/Portfolio.vue')
+      },
+      {
+        path: 'transactions',
+        component: () => import('@/views/Todo.vue')
       }
     ]
   }
+
+  // {
+  //   path: '/portfolio',
+  //   component: () => import('@/views/Portfolio.vue')
+  // },
+  // {
+  //   path: '/tabs/',
+  //   component: Tabs,
+  //   children: [
+  //     {
+  //       path: '',
+  //       redirect: '/tabs/transaction'
+  //     },
+  //     {
+  //       path: 'portfolio',
+  //       component: () => import('@/views/Portfolio.vue')
+  //     },
+  //     {
+  //       path: 'currencies',
+  //       component: () => import('@/views/Currencies.vue')
+  //     },
+  //     {
+  //       path: 'timerecord',
+  //       component: () => import('@/views/Timerecord.vue')
+  //     }
+  //   ]
+  // }
 ]
 
 const router = createRouter({

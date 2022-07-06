@@ -22,9 +22,7 @@
 
 <script lang="ts">
 import { getCurrency } from "@/api/currency";
-import { getPortfolio, postTransaction } from "@/api/portfolio";
 import { Currency } from "@/model/currency";
-import { Portfolio, Transaction } from "@/model/portfolio";
 import { Line } from "vue-chartjs";
 import moment from "moment";
 import {
@@ -88,7 +86,7 @@ export default {
         const labels = []
         const data = []
         for( const currencyValue of currency.historicalValues) {
-            labels.push(moment(currencyValue.timestamp).format('DD.MM.YYYY'))
+            labels.push(moment(currencyValue.timestamp).format('DD.MM.YY'))
             data.push(currencyValue.value)
         }
         return {
@@ -96,7 +94,7 @@ export default {
             datasets: [
                 {
                     data, 
-                    label: 'DOGE',
+                    label: currency.name,
                     fill: false,
           borderColor: "#3e95cd",
                 }
