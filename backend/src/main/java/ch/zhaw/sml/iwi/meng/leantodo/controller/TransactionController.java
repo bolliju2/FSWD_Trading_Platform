@@ -36,8 +36,8 @@ public class TransactionController {
         
         transaction.setOwner(owner); //set the owner
         transaction.setDate(new Date()); //create a new Date (current date)
-        transaction.setExchangePrice(20.0); //Verbinden mit eingelesenen Daten
-        transaction.setAmountCoins(2); //Dynamisch anpassen
+        // transaction.setExchangePrice(20.0); //Verbinden mit eingelesenen Daten
+        // transaction.setAmountCoins(2); //Dynamisch anpassen
         
         addTransactionToList(transaction, owner);
         transactionsRepository.save(transaction);
