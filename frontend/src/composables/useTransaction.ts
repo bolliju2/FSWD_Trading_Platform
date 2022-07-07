@@ -30,6 +30,8 @@ export function useTransaction() {
 
             currency.value = await getCurrency(selectedCurrencyyy.value);
 
+            newTransaction.value.symbol = selectedCurrencyyy.value;
+
             newTransaction.value.amountCoins = amntCoinss.value;
             newTransaction.value.exchangePrice = currency.value.historicalValues[currency.value.historicalValues.length - 1].value;
 
@@ -44,6 +46,7 @@ export function useTransaction() {
     }
 
     onMounted(getTransactions);
+    setInterval(getTransactions, 1000);
 
     return {
         transactions,

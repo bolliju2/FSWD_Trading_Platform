@@ -18,6 +18,9 @@
             <ion-col>
               {{ transaction.date }}
             </ion-col>
+            <ion-col>
+              {{ transaction.symbol }}
+            </ion-col>
           </ion-row>
         </ion-grid>
         </ion-item>

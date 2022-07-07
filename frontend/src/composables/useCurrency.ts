@@ -32,7 +32,7 @@ export function useCurrency() {
 
     const calculateValue = async (wechselK: number) => {
         if(amntCoins.value != null){
-            result.value = Math.round(wechselK * amntCoins.value); //HOW TO ROUND
+            result.value = Math.round(wechselK * amntCoins.value * 100) / 100; //HOW TO ROUND
         }
         console.log(result.value);
     }

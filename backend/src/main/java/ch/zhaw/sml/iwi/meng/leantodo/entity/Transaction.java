@@ -25,7 +25,17 @@ public class Transaction {
     private double exchangePrice;
     
     private double amountCoins;
+
+    private String symbol;
     
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
     public Long getTransactionId() {
         return transactionId;
     }

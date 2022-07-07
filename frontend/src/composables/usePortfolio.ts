@@ -15,6 +15,7 @@ export function usePortfolio() {
     }
 
     onMounted(getPortfolio);
+    setInterval(getPortfolio, 1000);
 
     return {
         portfolio,
