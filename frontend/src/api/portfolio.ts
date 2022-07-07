@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { API_ROOT } from "@/config/development";
 import { ToDo } from '@/model/todo';
-import { Portfolio, Transaction } from '@/model/portfolio';
+import { Portfolio } from '@/model/portfolio';
+import { Transaction } from '@/model/transaction'
 
 export async function getPortfolio(): Promise<Portfolio>   { 
     const config = {        

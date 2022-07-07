@@ -45,7 +45,13 @@ public class TransactionController {
 
         Double total = transaction.getExchangePrice() * transaction.getAmountCoins();
         Portfolio portfolio = userRepository.findById(owner).get().getPortfolio();
-        portfolio.setCash(portfolio.getCash() - (Math.round(total * 100.0) / 100.0));
+
+        if(transaction.isBuy()){
+            portfolio.setCash(portfolio.getCash() - (Math.round(total * 100.0) / 100.0));
+        }else{
+            portfolio.setCash(portfolio.getCash() + (Math.round(total * 100.0) / 100.0));
+        }
+
 
         portfolioRepository.save(portfolio);
         

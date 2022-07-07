@@ -1,6 +1,7 @@
 export interface Transaction {
-    id?: number;
+    transactionId?: number;
     exchangePrice?: number;
     amountCoins?: number;
     symbol?: string;
+    buy?: boolean;
 }

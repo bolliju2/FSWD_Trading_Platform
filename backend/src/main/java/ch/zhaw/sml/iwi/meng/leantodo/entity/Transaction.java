@@ -27,7 +27,17 @@ public class Transaction {
     private double amountCoins;
 
     private String symbol;
+
+    private boolean buy;
     
+    public boolean isBuy() {
+        return buy;
+    }
+
+    public void setBuy(boolean buy) {
+        this.buy = buy;
+    }
+
     public String getSymbol() {
         return symbol;
     }

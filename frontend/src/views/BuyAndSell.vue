@@ -32,13 +32,24 @@
           </ion-item>
           <ion-item>
             <ion-button
-              @click="calculateValue(currency.historicalValues[currency.historicalValues.length - 1].value); addTransaction()">Buy {{ selectedCurrency }}
+              @click="calculateValue(currency.historicalValues[currency.historicalValues.length - 1].value); addTransaction(true)">Buy {{ selectedCurrency }}
+            </ion-button>
+            <ion-button
+              @click="calculateValue(currency.historicalValues[currency.historicalValues.length - 2].value); addTransaction(false)">Sell {{ selectedCurrency }}
             </ion-button>
           </ion-item>
           <ion-item>
             <h3>Total: {{ result }}</h3>
           </ion-item>
         </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Sell coins</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>coming soon...</p>
       </ion-card-content>
     </ion-card>
   </ion-page>

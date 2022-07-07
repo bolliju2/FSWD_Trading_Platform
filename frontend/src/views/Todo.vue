@@ -2,25 +2,23 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Todos</ion-title>
+        <ion-title>Transactions</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Todos</ion-title>
+          <ion-title size="large">Transactions</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-list>
         <ion-item :key="transaction" v-for="transaction in transactions">
         <ion-grid>
-          <ion-row>
-            <ion-col>
-              {{ transaction.date }}
-            </ion-col>
-            <ion-col>
-              {{ transaction.symbol }}
-            </ion-col>
+          <ion-row v-if="transaction.buy">
+            <p>Transaction {{ transaction.transactionId }}: Buy {{ transaction.symbol }}, Amount: {{ transaction.amountCoins }}, Price: {{ transaction.exchangePrice }}, Date: {{ transaction.date }} </p>
+          </ion-row>
+          <ion-row v-else>
+            <p>Transaction {{ transaction.transactionId }}: Sell {{ transaction.symbol }}, Amount: {{ transaction.amountCoins }}, Price: {{ transaction.exchangePrice }}, Date: {{ transaction.date }} </p>
           </ion-row>
         </ion-grid>
         </ion-item>
@@ -28,7 +26,9 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              {{ portfolio.cash }}
+              <p>
+                Current Cash: <strong>{{ portfolio.cash }}</strong>
+              </p>
             </ion-col>
           </ion-row>
         </ion-grid>

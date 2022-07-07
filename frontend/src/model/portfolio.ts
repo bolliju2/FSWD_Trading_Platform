@@ -1,4 +1,4 @@
-//import { Transaction } from "@/model/transaction";
+import { Transaction } from "@/model/transaction";
 
 
 export interface Portfolio {
@@ -8,10 +8,11 @@ export interface Portfolio {
 }
 
 
-
+/*
 export interface Transaction {
     id?: number;
     date?: string;
     exchangePrice?: number;
     amountCoins?: number;
 }
+*/
