@@ -15,10 +15,19 @@
         <ion-item :key="transaction" v-for="transaction in transactions">
         <ion-grid>
           <ion-row v-if="transaction.buy">
-            <p>Transaction {{ transaction.transactionId }}: Buy {{ transaction.symbol }}, Amount: {{ transaction.amountCoins }}, Price: {{ transaction.exchangePrice }}, Date: {{ transaction.date }} </p>
+          <div>
+            <p> <strong>TRANSACTION {{ transaction.transactionId }}: BUY {{ transaction.symbol }}</strong></p>
+            <p> Amount: <strong>{{ transaction.amountCoins }}</strong>, Price: <strong>{{ transaction.exchangePrice }}</strong></p>
+            <p>Date: {{ transaction.date }} </p>
+
+          </div>
           </ion-row>
           <ion-row v-else>
-            <p>Transaction {{ transaction.transactionId }}: Sell {{ transaction.symbol }}, Amount: {{ transaction.amountCoins }}, Price: {{ transaction.exchangePrice }}, Date: {{ transaction.date }} </p>
+            <div>
+              <p> <strong>TRANSACTION {{ transaction.transactionId }}: SELL {{ transaction.symbol }}</strong></p>
+            <p> Amount: <strong>{{ transaction.amountCoins }}</strong>, Price: <strong>{{ transaction.exchangePrice }}</strong></p>
+            <p>Date: {{ transaction.date }} </p>
+            </div>
           </ion-row>
         </ion-grid>
         </ion-item>
@@ -27,7 +36,7 @@
           <ion-row>
             <ion-col>
               <p>
-                Current Cash: <strong>{{ portfolio.cash }}</strong>
+                <strong>Current Cash: {{ portfolio.cash }}</strong>
               </p>
             </ion-col>
           </ion-row>

@@ -2,8 +2,8 @@
   <ion-page>
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Buy coins</ion-card-title>
-      </ion-card-header>
+        <ion-card-title>Buy and sell coins</ion-card-title>
+      </ion-card-header>      
       <ion-card-content>
         <ion-list>
           <ion-item>
@@ -19,7 +19,7 @@
           </ion-item>
           <ion-item>
             <p v-if="currency">
-              Aktueller Wechselkurs: {{ currency.historicalValues[currency.historicalValues.length - 1].value }}
+              Aktueller Wechselkurs: <strong> {{ currency.historicalValues[currency.historicalValues.length - 1].value }} </strong>
             </p>
           </ion-item>
           <ion-item>
@@ -39,19 +39,13 @@
             </ion-button>
           </ion-item>
           <ion-item>
-            <h3>Total: {{ result }}</h3>
+            <h3>Total: <strong> {{ result }} </strong> </h3>
           </ion-item>
         </ion-list>
       </ion-card-content>
+
     </ion-card>
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Sell coins</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>coming soon...</p>
-      </ion-card-content>
-    </ion-card>
+    
   </ion-page>
 </template>
 
@@ -120,4 +114,5 @@ export default {
 </script>
 
 <style>
+
 </style>
