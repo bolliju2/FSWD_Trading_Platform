@@ -16,6 +16,20 @@ export async function getAllTransactions(): Promise<Transaction[]>   {
     }
 }
 
+export async function addNewTransaction(newTransaction: Transaction): Promise<any> {
+    const config = {        
+        withCredentials: true
+    }
+    try {
+        const response = await axios.post(API_ROOT + '/api/transaction', newTransaction, config);
+        console.log(response.data)
+        return response.data;
+        
+    } catch (error) {
+        return <any>error;   
+    }
+}
+
 // export async function addNewToDo(newToDo: ToDo): Promise<any>   {
 //     const config = {        
 //         withCredentials: true

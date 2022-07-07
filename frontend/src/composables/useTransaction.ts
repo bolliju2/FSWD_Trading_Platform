@@ -1,11 +1,21 @@
 import { Transaction } from "@/model/transaction";
 import { onMounted, ref } from "vue";
-import { getAllTransactions } from "@/api/transactions";
+import { addNewTransaction, getAllTransactions } from "@/api/transactions";
+import { Currency } from "@/model/currency";
+import { getCurrency } from "@/api/currency";
+
 
 export function useTransaction() {
 
     const transactions = ref<Transaction[]>([]);
 
+    const newTransaction = ref<Transaction>({});
+
+    const currency = ref<Currency>();
+
+    const amntCoinss = ref<number>();
+
+    const selectedCurrencyyy = ref<string>('Test');
 
     const getTransactions = async () => {
         try {
@@ -15,43 +25,31 @@ export function useTransaction() {
         }
     }
 
-    // const finishTodo = async (todo: ToDo) => {
-    //     try {
-    //         todo.done = true;
-    //         updateToDo(todo);
-    //     } catch (error) {
-    //         console.log(error); // FIXME: Errorhandling
-    //     }
-    // }
+    const addTransaction = async () => {
+        try {
 
-    // const archiveTodo = async (todo: ToDo) => {
-    //     try {
-    //         todo.archived = true;
-    //         await updateToDo(todo);
-    //         getTodos();
-    //     } catch (error) {
-    //         console.log(error); // FIXME: Errorhandling
-    //     }
-    // }
+            currency.value = await getCurrency(selectedCurrencyyy.value);
 
-    // const addTodo = async () => {
-    //     try {
-    //         // add the new todo and update the list of all todos afterwards
-    //         await addNewToDo(newTodo.value);
-    //         getTodos();
-    //     } catch (error) {
-    //         console.log(error); // FIXME: Errorhandling
-    //     }
-    // }
+            newTransaction.value.amountCoins = amntCoinss.value;
+            newTransaction.value.exchangePrice = currency.value.historicalValues[currency.value.historicalValues.length - 1].value;
+
+
+            // add the new todo and update the list of all todos afterwards
+            console.log(newTransaction.value);
+            await addNewTransaction(newTransaction.value);
+            getTransactions();
+        } catch (error) {
+            console.log(error); // FIXME: Errorhandling
+        }
+    }
 
     onMounted(getTransactions);
 
     return {
         transactions,
-        // todos,
-        // getTodos,
-        // addTodo,
-        // finishTodo,
-        // archiveTodo
+        newTransaction,
+        addTransaction,
+        amntCoinss,
+        selectedCurrencyyy
     }
 }

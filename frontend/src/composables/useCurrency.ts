@@ -7,6 +7,8 @@ export function useCurrency() {
     const currencyNames = ref<string[]>([]);
     const currency = ref<Currency>();
     const selectedCurrency = ref<string>('Test');
+    const result = ref<number>();
+    const amntCoins = ref<number>();
 
     const getCurrencyNames = async () => {
         try {
@@ -19,7 +21,6 @@ export function useCurrency() {
     const getCurrencies = async () => {
         try {
             currency.value = await getCurrency(selectedCurrency.value);
-            console.log(currency.value);
         } catch (error) {
             console.log(error); // FIXME: Errorhandling
         }
@@ -29,7 +30,13 @@ export function useCurrency() {
         getCurrencies();
     }
 
+    const calculateValue = async (wechselK: number) => {
+        if(amntCoins.value != null){
+            result.value = Math.round(wechselK * amntCoins.value); //HOW TO ROUND
+        }
+        console.log(result.value);
+    }
+
     onMounted(getCurrencyNames);
-    onMounted(getCurrencies);
-    return {currencyNames, currency, setCurrency, selectedCurrency};
+    return {currencyNames, currency, setCurrency, selectedCurrency, calculateValue, result, amntCoins};
 }

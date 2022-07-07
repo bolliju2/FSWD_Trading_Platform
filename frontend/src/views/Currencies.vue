@@ -94,7 +94,7 @@ export default {
             datasets: [
                 {
                     data, 
-                    label: currency.name,
+                    label: currency.symbol,
                     fill: false,
           borderColor: "#3e95cd",
                 }
@@ -107,7 +107,7 @@ export default {
 
       for (const c of currs) {
         const currency = await getCurrency(c);
-        currency.name = c;
+        currency.symbol = c;
         currencies.value.push(currency);
       }
     };

@@ -2,16 +2,41 @@
   <ion-page>
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Buy and sell coins</ion-card-title>
+        <ion-card-title>Buy coins</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-select placeholder="Select currency" @ionChange="selectedCurrency = $event.detail.value; setCurrency()">
-              <ion-select-option :value="symbol" :key="symbol" v-for="symbol in currencyNames">{{ symbol }}</ion-select-option>
+            <ion-select
+              placeholder="Select currency" @ionChange="selectedCurrency = $event.detail.value; setCurrency(); selectedCurrencyyy = $event.detail.value">
+              <ion-select-option
+                :value="symbol"
+                :key="symbol"
+                v-for="symbol in currencyNames"
+                >{{ symbol }}</ion-select-option
+              >
             </ion-select>
-            <p v-if="currency">{{ currency.historicalValues[currency.historicalValues.length - 1].value }}</p>
-            
+          </ion-item>
+          <ion-item>
+            <p v-if="currency">
+              Aktueller Wechselkurs: {{ currency.historicalValues[currency.historicalValues.length - 1].value }}
+            </p>
+          </ion-item>
+          <ion-item>
+            <ion-input
+              type="number"
+              placeholder="Enter the amount of coins" 
+              @ionChange="amntCoinss = $event.detail.value" v-model="amntCoins"
+              >
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-button
+              @click="calculateValue(currency.historicalValues[currency.historicalValues.length - 1].value); addTransaction()">Buy {{ selectedCurrency }}
+            </ion-button>
+          </ion-item>
+          <ion-item>
+            <h3>Total: {{ result }}</h3>
           </ion-item>
         </ion-list>
       </ion-card-content>
@@ -29,9 +54,12 @@ import {
   IonSelectOption,
   IonCardTitle,
   IonCardHeader,
-  IonCardContent
+  IonCardContent,
+  IonInput,
+  IonButton,
 } from "@ionic/vue";
 import { useCurrency } from "@/composables/useCurrency";
+import { useTransaction } from "@/composables/useTransaction";
 
 export default {
   name: "BuyAndSell",
@@ -44,12 +72,38 @@ export default {
     IonSelectOption,
     IonCardTitle,
     IonCardHeader,
-    IonCardContent
+    IonCardContent,
+    IonInput,
+    IonButton,
   },
   setup() {
-    const { currencyNames, currency, setCurrency, selectedCurrency } = useCurrency();
+    const {
+      currencyNames,
+      currency,
+      setCurrency,
+      selectedCurrency,
+      calculateValue,
+      result,      
+      amntCoins,
+    } = useCurrency();
+    const {  
+        addTransaction,
+        selectedCurrencyyy,
+        amntCoinss
+      } = useTransaction();
 
-    return {currencyNames, currency, setCurrency, selectedCurrency};
+    return {
+      currencyNames,
+      currency,
+      setCurrency,
+      selectedCurrency,
+      calculateValue,
+      result,
+      amntCoins,
+      addTransaction,
+      selectedCurrencyyy,
+      amntCoinss
+    };
   },
 };
 </script>
