@@ -2,104 +2,147 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Portfolio</ion-title>
+        <ion-title>Transactions</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Portfolio</ion-title>
+          <ion-title size="large">Transactions</ion-title>
         </ion-toolbar>
       </ion-header>
+      <ion-list>
+        <ion-item :key="transaction" v-for="transaction in transactions">
+        <ion-grid>
+          <ion-row v-if="transaction.buy">
+          <div>
+            <p> <strong>TRANSACTION {{ transaction.transactionId }}: BUY {{ transaction.symbol }}</strong></p>
+            <p> Amount: <strong>{{ transaction.amountCoins }}</strong>, Price: <strong>{{ transaction.exchangePrice }}</strong></p>
+            <p>Date: {{ transaction.date }} </p>
 
-exchangeprice
-        <input type="text" v-model="newTransaction.exchangePrice">
-        amountcoins
-        <input type="text" v-model="newTransaction.amountCoins">
-      <button @click="createNewTransaction">do transaction</button>
-      <table>
-
-        <tr>
-          <th>Cash:</th>
-          <td>{{ portfolio.cash }}</td>
-        </tr>
-      </table>
-      transaktionen:
-      {{portfolio.transactions}}
+          </div>
+          </ion-row>
+          <ion-row v-else>
+            <div>
+              <p> <strong>TRANSACTION {{ transaction.transactionId }}: SELL {{ transaction.symbol }}</strong></p>
+            <p> Amount: <strong>{{ transaction.amountCoins }}</strong>, Price: <strong>{{ transaction.exchangePrice }}</strong></p>
+            <p>Date: {{ transaction.date }} </p>
+            </div>
+          </ion-row>
+        </ion-grid>
+        </ion-item>
+        <ion-item :key="portfolio">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <p>
+                <strong>Current Cash: {{ portfolio.cash }}</strong>
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        </ion-item>
+        <!-- <ion-item :key="todo" v-for="todo in todos">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                {{ todo.title }}
+              </ion-col>
+              <ion-col>
+                <ion-button
+                  color="danger"
+                  v-if="!todo.done && !todo.archived"
+                  @click="finishTodo(todo)"
+                  >Finish</ion-button
+                >
+                <ion-button
+                  color="success"
+                  v-if="todo.done && !todo.archived"
+                  @click="archiveTodo(todo)"
+                  >Archive</ion-button
+                >
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item> -->
+      </ion-list>
+      <!-- <ion-item>
+        <ion-input
+          type="text"
+          placeholder="New Todo Title"
+          v-model="newTodo.title"
+        ></ion-input>
+      </ion-item> -->
+      <!-- <div padding>
+        <ion-button @click="addTodo()">Add New ToDo</ion-button>
+      </div> -->
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { getPortfolio, postTransaction } from "@/api/portfolio";
-import { Portfolio, Transaction } from "@/model/portfolio";
 import {
   IonPage,
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
-  //IonCol,
-  //IonRow,
-  //IonGrid,
-  //IonItem,
-  //IonList,
+  IonCol,
+  IonRow,
+  IonGrid,
+  IonItem,
+  IonList,
   //IonButton,
   //IonInput,
 } from "@ionic/vue";
-import { onMounted, ref } from "vue";
+//import { useTodos } from "@/composables/useTodos";
+import { useTransaction } from "@/composables/useTransaction";
+import { usePortfolio } from "@/composables/usePortfolio";
+
+// export default {
+//   name: "Todo",
+//   components: {
+//     IonHeader,
+//     IonToolbar,
+//     IonTitle,
+//     IonContent,
+//     IonPage,
+//     IonCol,
+//     IonRow,
+//     IonGrid,
+//     IonItem,
+//     IonList,
+//     IonButton,
+//     IonInput,
+//   },
+//   setup() {
+//     const { newTodo, todos, getTodos, addTodo, finishTodo, archiveTodo } = useTodos();
+
+//     return { newTodo, todos, getTodos, addTodo, finishTodo, archiveTodo };
+//   },
+// };
 
 export default {
-  name: "Todo",
+  name: "Transaction",
   components: {
     IonHeader,
     IonToolbar,
     IonTitle,
     IonContent,
     IonPage,
-    //IonCol,
-    //IonRow,
-    //IonGrid,
-    //IonItem,
-    //IonList,
+    IonCol,
+    IonRow,
+    IonGrid,
+    IonItem,
+    IonList,
     //IonButton,
     //IonInput,
   },
   setup() {
-    const portfolio = ref<Portfolio>({});
+    const { transactions } = useTransaction();
+    const { portfolio } = usePortfolio();
 
-    //const today = new Date();
-    const newTransaction = ref<Transaction>({
-        //date: `${today.getFullYear()}/${today.getMonth()}/${today.getDay()}`,
-        exchangePrice: 1,
-        amountCoins: 1
-    });
-
-    const loadPortfolio = async () => {
-      try {
-        portfolio.value = await getPortfolio();
-      } catch (error) {
-        console.log(error); // FIXME: Errorhandling
-      }
-    };
-
-    const createNewTransaction = async () => {
-      try {
-        const res = await postTransaction(newTransaction.value);
-        console.log({ res });
-        loadPortfolio();
-      } catch (error) {
-        console.log(error); // FIXME: Errorhandling
-      }
-    };
-
-    onMounted(loadPortfolio);
-
-    return {
-        newTransaction,
-        createNewTransaction,
-        portfolio,
-    };
-  },
-};
+    return { transactions, portfolio };
+  }
+}
 </script>

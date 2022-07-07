@@ -26,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'portfolio',
-        component: () => import('@/views/Todo.vue')
+        component: () => import('@/views/Portfolio.vue')
       },
       {
         path: 'transactions',
@@ -34,33 +34,6 @@ const routes: Array<RouteRecordRaw> = [
       }
     ]
   }
-
-  // {
-  //   path: '/portfolio',
-  //   component: () => import('@/views/Portfolio.vue')
-  // },
-  // {
-  //   path: '/tabs/',
-  //   component: Tabs,
-  //   children: [
-  //     {
-  //       path: '',
-  //       redirect: '/tabs/transaction'
-  //     },
-  //     {
-  //       path: 'portfolio',
-  //       component: () => import('@/views/Portfolio.vue')
-  //     },
-  //     {
-  //       path: 'currencies',
-  //       component: () => import('@/views/Currencies.vue')
-  //     },
-  //     {
-  //       path: 'timerecord',
-  //       component: () => import('@/views/Timerecord.vue')
-  //     }
-  //   ]
-  // }
 ]
 
 const router = createRouter({

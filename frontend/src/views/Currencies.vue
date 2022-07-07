@@ -63,7 +63,7 @@ ChartJS.register(
 );
 
 export default {
-  name: "Todo",
+  name: "Currencies",
   components: {
     IonHeader,
     IonToolbar,
@@ -71,13 +71,6 @@ export default {
     IonContent,
     IonPage,
     "line-chart": Line,
-    //IonCol,
-    //IonRow,
-    //IonGrid,
-    //IonItem,
-    //IonList,
-    //IonButton,
-    //IonInput,
   },
   setup() {
     const currencies = ref<Currency[]>([]);
