@@ -1,7 +1,6 @@
 package ch.zhaw.sml.iwi.meng.leantodo.entity;
 
 
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long transactionId;
 
-    private Date date;
+    private String date;
 
     private double exchangePrice;
     
@@ -54,11 +53,11 @@ public class Transaction {
         this.transactionId = transactionId;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
