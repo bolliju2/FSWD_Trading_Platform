@@ -6,7 +6,7 @@
         <ion-title>
           <ion-col
             ><ion-text color="primary">
-              <h2><strong>Transactions</strong></h2></ion-text
+              <h2><strong>Portfolio</strong></h2></ion-text
             >
             <ion-text align="right">
               <h2><strong> Current Cash: {{ portfolio.cash }} USD</strong></h2></ion-text
@@ -33,7 +33,7 @@
               <div>
                 <p>
                   <ion-col
-                    >TRANSACTION
+                    >TRANSACTION:
                     <strong> {{ transaction.transactionId }}</strong>
                   </ion-col>
                   <ion-col>
@@ -60,7 +60,7 @@
               <div>
                 <p>
                   <ion-col
-                    >TRANSACTION
+                    >TRANSACTION:
                     <strong> {{ transaction.transactionId }}</strong>
                   </ion-col>
                   <ion-col>
