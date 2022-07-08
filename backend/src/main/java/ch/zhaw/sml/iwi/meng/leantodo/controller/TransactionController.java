@@ -1,5 +1,6 @@
 package ch.zhaw.sml.iwi.meng.leantodo.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -46,8 +47,11 @@ public class TransactionController {
             portfolio.setCash(portfolio.getCash() + (Math.round(total * 100.0) / 100.0));
         }
 
+        Date date = new Date();  
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.YYYY hh:mm:ss");  
+        String strDate= formatter.format(date);  
         transaction.setOwner(owner);
-        transaction.setDate(new Date());
+        transaction.setDate(strDate);
         portfolioRepository.save(portfolio);
         addTransactionToList(transaction, owner);
         transactionsRepository.save(transaction);

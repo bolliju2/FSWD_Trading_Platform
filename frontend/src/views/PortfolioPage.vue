@@ -1,10 +1,25 @@
 <template>
   <ion-page>
+    <p></p>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Transactions</ion-title>
+        <ion-title>
+          <ion-col
+            ><ion-text color="primary">
+              <h2><strong>Transactions</strong></h2></ion-text
+            >
+            <ion-text align="right">
+              <h2><strong> Current Cash: {{ portfolio.cash }} USD</strong></h2></ion-text
+            >
+          
+          </ion-col>
+          <ion-col>
+            
+          </ion-col>
+        </ion-title>
       </ion-toolbar>
     </ion-header>
+
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
@@ -13,33 +28,69 @@
       </ion-header>
       <ion-list>
         <ion-item :key="transaction" v-for="transaction in transactions">
-        <ion-grid>
-          <ion-row v-if="transaction.buy">
-          <div>
-            <p> <strong>TRANSACTION {{ transaction.transactionId }}: BUY {{ transaction.symbol }}</strong></p>
-            <p> Amount: <strong>{{ transaction.amountCoins }}</strong>, Price: <strong>{{ transaction.exchangePrice }}</strong></p>
-            <p>Date: {{ transaction.date }} </p>
-          </div>
-          </ion-row>
-          <ion-row v-else>
-            <div>
-              <p> <strong>TRANSACTION {{ transaction.transactionId }}: SELL {{ transaction.symbol }}</strong></p>
-            <p> Amount: <strong>{{ transaction.amountCoins }}</strong>, Price: <strong>{{ transaction.exchangePrice }}</strong></p>
-            <p>Date: {{ transaction.date }} </p>
-            </div>
-          </ion-row>
-        </ion-grid>
+          <ion-grid>
+            <ion-row v-if="transaction.buy">
+              <div>
+                <p>
+                  <ion-col
+                    >TRANSACTION
+                    <strong> {{ transaction.transactionId }}</strong>
+                  </ion-col>
+                  <ion-col>
+                    <ion-text color="success"> <strong> BUY </strong></ion-text
+                    ><strong>{{ transaction.symbol }}</strong></ion-col
+                  >
+                  <ion-col></ion-col>
+                </p>
+
+                <ion-col
+                  >Amount:
+                  <strong>{{ transaction.amountCoins }}</strong></ion-col
+                >
+                <ion-col
+                  >Price:
+                  <strong>{{ transaction.exchangePrice }} USD</strong></ion-col
+                >
+                <ion-col>
+                  Date: <strong>{{ transaction.date }}</strong></ion-col
+                >
+              </div>
+            </ion-row>
+            <ion-row v-else>
+              <div>
+                <p>
+                  <ion-col
+                    >TRANSACTION
+                    <strong> {{ transaction.transactionId }}</strong>
+                  </ion-col>
+                  <ion-col>
+                    <ion-text color="danger"> <strong> SELL </strong></ion-text
+                    ><strong>{{ transaction.symbol }}</strong></ion-col
+                  >
+                  <ion-col></ion-col>
+                </p>
+
+                <ion-col
+                  >Amount:
+                  <strong>{{ transaction.amountCoins }}</strong></ion-col
+                >
+                <ion-col
+                  >Price:
+                  <strong>{{ transaction.exchangePrice }} USD</strong></ion-col
+                >
+                <ion-col>
+                  Date: <strong>{{ transaction.date }}</strong></ion-col
+                >
+              </div>
+            </ion-row>
+          </ion-grid>
         </ion-item>
         <ion-item :key="portfolio">
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <p>
-                <strong>Current Cash: {{ portfolio.cash }}</strong>
-              </p>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+          <ion-grid>
+            <ion-row>
+              <ion-col> </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -62,7 +113,6 @@ import {
 import { useTransaction } from "@/composables/useTransaction";
 import { usePortfolio } from "@/composables/usePortfolio";
 
-
 export default {
   name: "PortfolioPage",
   components: {
@@ -82,6 +132,6 @@ export default {
     const { portfolio } = usePortfolio();
 
     return { transactions, portfolio };
-  }
-}
+  },
+};
 </script>
