@@ -1,6 +1,6 @@
 import { onMounted, ref } from "vue";
 import { Portfolio } from "@/model/portfolio";
-import { getPortfolios } from "@/api/portfolios";
+import { getPortfolios } from "@/api/portfolio";
 
 export function usePortfolio() {
 

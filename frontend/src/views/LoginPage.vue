@@ -5,7 +5,7 @@
         <ion-row justify-content-center>
           <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
             <div text-center>
-              <h1>LeanTodo login</h1>
+              <h1>Trading login</h1>
             </div>
             <div padding>
               <ion-item>
@@ -49,7 +49,7 @@ import {
 import { useLogin } from "@/composables/useLogin";
 
 export default {
-  name: "Login",
+  name: "LoginPage",
   components: {
     IonContent,
     IonPage,

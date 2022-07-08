@@ -29,8 +29,6 @@ public class CurrencyEndpoint {
         return res;
     }
 
-
-
     @RequestMapping(path = "/api/currency/{name}", method = RequestMethod.GET)
     public TimeSeries getCurrency(@PathVariable(name = "name") String name) {
 
@@ -63,10 +61,9 @@ public class CurrencyEndpoint {
                                     value));
                 }
             }
-            //EVTL. LETZTER WERT VON historicalValue (value)
             
         } catch (Exception e) {
-           // e.printStackTrace();
+            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return ts;

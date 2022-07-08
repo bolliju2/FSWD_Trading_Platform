@@ -19,7 +19,7 @@
           </ion-item>
           <ion-item>
             <p v-if="currency">
-              Aktueller Wechselkurs: <strong> {{ currency.historicalValues[currency.historicalValues.length - 1].value }} </strong>
+              Current Value: <strong> {{ currency.historicalValues[currency.historicalValues.length - 1].value }} </strong>
             </p>
           </ion-item>
           <ion-item>
@@ -43,9 +43,7 @@
           </ion-item>
         </ion-list>
       </ion-card-content>
-
     </ion-card>
-    
   </ion-page>
 </template>
 
@@ -67,7 +65,7 @@ import { useCurrency } from "@/composables/useCurrency";
 import { useTransaction } from "@/composables/useTransaction";
 
 export default {
-  name: "BuyAndSell",
+  name: "TradingPage",
   components: {
     IonPage,
     IonCard,

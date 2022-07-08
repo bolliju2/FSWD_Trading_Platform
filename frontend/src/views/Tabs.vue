@@ -7,12 +7,10 @@
           <ion-icon :icon="flash" />
           <ion-label>Currencies</ion-label>
         </ion-tab-button>
-          
         <ion-tab-button tab="projects" href="/tabs/portfolio">
           <ion-icon :icon="apps" />
           <ion-label>Portfolio</ion-label>
         </ion-tab-button>
-        
         <ion-tab-button tab="timerecord" href="/tabs/transactions">
           <ion-icon :icon="send" />
           <ion-label>Buy/Sell</ion-label>

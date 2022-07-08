@@ -19,10 +19,10 @@ import ch.zhaw.sml.iwi.meng.leantodo.entity.UserRepository;
 @SpringBootApplication
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-public class LeanToDo implements CommandLineRunner {
+public class TradingCrypto implements CommandLineRunner {
 
     public static void main(String[] args) {
-        SpringApplication.run(LeanToDo.class, args);
+        SpringApplication.run(TradingCrypto.class, args);
 
     }
 
@@ -31,9 +31,6 @@ public class LeanToDo implements CommandLineRunner {
 
     @Autowired
     private RoleRepository roleRepository;
-
-    // @Autowired
-    // private TransactionsRepository toDoRepository;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {

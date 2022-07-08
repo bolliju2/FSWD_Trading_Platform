@@ -1,4 +1,4 @@
-import { getAllCurrencyNames, getCurrency } from '@/api/currencyTest';
+import { getAllCurrencyNames, getCurrency } from '@/api/currency';
 import { Currency } from '@/model/currency';
 import { onMounted, ref } from 'vue';
 
@@ -6,10 +6,11 @@ export function useCurrency() {
 
     const currencyNames = ref<string[]>([]);
     const currency = ref<Currency>();
-    const selectedCurrency = ref<string>('Test');
+    const selectedCurrency = ref<string>('Coins');
     const result = ref<number>();
     const amntCoins = ref<number>();
 
+    //Get all currency names
     const getCurrencyNames = async () => {
         try {
             currencyNames.value = await getAllCurrencyNames();
@@ -18,6 +19,7 @@ export function useCurrency() {
         }
     }
 
+    //Get historical values from the selected currency
     const getCurrencies = async () => {
         try {
             currency.value = await getCurrency(selectedCurrency.value);
@@ -30,9 +32,10 @@ export function useCurrency() {
         getCurrencies();
     }
 
-    const calculateValue = async (wechselK: number) => {
+    //Calculate the amount currency bought/sold
+    const calculateValue = async (value: number) => {
         if(amntCoins.value != null){
-            result.value = Math.round(wechselK * amntCoins.value * 100) / 100; //HOW TO ROUND
+            result.value = Math.round(value * amntCoins.value * 100) / 100;
         }
         console.log(result.value);
     }

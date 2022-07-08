@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
-
 @Entity
 public class Portfolio {
     @Id
@@ -19,7 +17,7 @@ public class Portfolio {
     private Double cash;
     
     public Portfolio() {
-        this.cash = 1000.0;
+        this.cash = 500000.0;
     }
 
     @OneToMany
@@ -36,12 +34,7 @@ public class Portfolio {
 
     public void setTransactions(Transaction transaction) {
         transactions.add(transaction);
-        //this.transactions = transactions;
     }
-
-    // public void setTransactions(List<Transaction> transactions) {
-    //     this.transactions = transactions;
-    // }
 
     public Long getId() {
         return id;
@@ -54,9 +47,5 @@ public class Portfolio {
     public void setCash(Double cash) {
         this.cash = cash;
     }
-
-
-
-
     
 }

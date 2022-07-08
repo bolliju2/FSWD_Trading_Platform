@@ -78,7 +78,6 @@ public class Transaction {
         this.amountCoins = amountCoins;
     }
 
-
     @JsonIgnore
     private String owner;
 

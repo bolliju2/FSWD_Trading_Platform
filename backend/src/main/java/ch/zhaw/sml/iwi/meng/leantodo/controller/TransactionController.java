@@ -25,36 +25,30 @@ public class TransactionController {
     @Autowired
     private PortfolioRepository portfolioRepository;
 
-    //Get all Transactions from Portfolio with the logged user
     public List<Transaction> listAllTransactions(String loginName) {
 
         Portfolio portfolio = userRepository.findById(loginName).get().getPortfolio();
-        
-
         return portfolio.getTransactions();
     }
 
-
-    //HIER MIT VARIABLEN ARBEITEN
     public void addTransaction(Transaction transaction, String owner) {
-        
-        transaction.setOwner(owner); //set the owner
-        transaction.setDate(new Date()); //create a new Date (current date)
-        // transaction.setExchangePrice(20.0); //Verbinden mit eingelesenen Daten
-        // transaction.setAmountCoins(2); //Dynamisch anpassen
 
+        //Calculate the total of value of the executed transaction
         Double total = transaction.getExchangePrice() * transaction.getAmountCoins();
         Portfolio portfolio = userRepository.findById(owner).get().getPortfolio();
-
+        
+        //Check if the user buys or sells an amount of coin
         if(transaction.isBuy()){
+            //Subtract the total of currency value from the cash in portfolio
             portfolio.setCash(portfolio.getCash() - (Math.round(total * 100.0) / 100.0));
         }else{
+            //Add the total of currency value to the cash in portfolio
             portfolio.setCash(portfolio.getCash() + (Math.round(total * 100.0) / 100.0));
         }
 
-
+        transaction.setOwner(owner);
+        transaction.setDate(new Date());
         portfolioRepository.save(portfolio);
-        
         addTransactionToList(transaction, owner);
         transactionsRepository.save(transaction);
     }
@@ -63,9 +57,6 @@ public class TransactionController {
 
         Portfolio portfolio = userRepository.findById(owner).get().getPortfolio();
         portfolio.setTransactions(transaction);
-        // List<Transaction> transList = transactionsRepository.findByOwner(owner);
-        // portfolio.setTransactions(transList);
-
     }
 
 

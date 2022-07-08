@@ -11,9 +11,8 @@
           <ion-title size="large">Currencies</ion-title>
         </ion-toolbar>
       </ion-header>
-
       <div :key="currency" v-for="currency in currencies">
-        <h3>{{ currency.name }}</h3>
+        <h3>{{ currency.symbol }}</h3>
         <line-chart :chart-data="toChartData(currency)"></line-chart>
       </div>
     </ion-content>
@@ -31,13 +30,6 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  //IonCol,
-  //IonRow,
-  //IonGrid,
-  //IonItem,
-  //IonList,
-  //IonButton,
-  //IonInput,
 } from "@ionic/vue";
 import { onMounted, ref } from "vue";
 
@@ -63,7 +55,7 @@ ChartJS.register(
 );
 
 export default {
-  name: "Currencies",
+  name: "CurrenciesPage",
   components: {
     IonHeader,
     IonToolbar,
@@ -75,6 +67,7 @@ export default {
   setup() {
     const currencies = ref<Currency[]>([]);
 
+    //Function to create a chart
     const toChartData = (currency: Currency) => {
         const labels = []
         const data = []
@@ -95,6 +88,8 @@ export default {
 
         }
     };
+
+    //Function to load all currencies
     const loadCurrencies = async () => {
       const currs = ["DOGE", "OG", "BTC", "ETH"];
 

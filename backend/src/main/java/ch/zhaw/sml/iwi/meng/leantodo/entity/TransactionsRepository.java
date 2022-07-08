@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransactionsRepository extends JpaRepository<Transaction,Long> {
-
     public ArrayList<Transaction> findByOwner(String owner);
 }
