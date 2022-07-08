@@ -11,21 +11,9 @@
           <ion-title size="large">Currencies</ion-title>
         </ion-toolbar>
       </ion-header>
-      <div class="chart" :key="currency" v-for="currency in currencies">
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>
-              <h1>
-                {{ currency.symbol }}
-              </h1>
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <line-chart :chart-data="toChartData(currency)"></line-chart>
-          </ion-card-content>
-        </ion-card>
-        <!-- <h3>{{ currency.symbol }}</h3>
-        <line-chart :chart-data="toChartData(currency)"></line-chart> -->
+      <div :key="currency" v-for="currency in currencies">
+        <h3>{{ currency.symbol }}</h3>
+        <line-chart :chart-data="toChartData(currency)"></line-chart>
       </div>
     </ion-content>
   </ion-page>
@@ -42,10 +30,6 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle
 } from "@ionic/vue";
 import { onMounted, ref } from "vue";
 
@@ -80,10 +64,6 @@ export default {
     IonContent,
     IonPage,
     "line-chart": Line,
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardTitle
   },
   setup() {
     const currencies = ref<Currency[]>([]);
@@ -132,8 +112,4 @@ export default {
 </script>
 
 <style>
-.chart {
-  margin: auto;
-  width: 80%;
-}
 </style>
